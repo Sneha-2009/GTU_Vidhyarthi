@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>April 27 Practical</title>
+</head>
+<body>
+    <form action="#">
+        <table>
+            <tr>
+                <td>
+                    <label for="usrnm">Username: </label>
+                </td>
+                <td>    
+                    <input type="text" name="usrnm" id="usrnm">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="pwd">Password: </label>
+                </td>
+                <td>    
+                    <input type="text" name="pwd" id="pwd">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cpd">Confirm Password: </label>
+                </td>
+                <td>    
+                    <input type="text" name="cpd" id="cpd">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="mob">Mobile Number: </label>
+                </td>
+                <td>    
+                    <input type="text" name="mob" id="mob">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">E-mail Id: </label>
+                </td>
+                <td>    
+                    <input type="text" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="url">Web URL: </label>
+                </td>
+                <td>    
+                    <input type="text" name="url" id="url">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="spl">Special: </label>
+                </td>
+                <td>    
+                    <input type="text" name="spl" id="spl">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Validate" onclick="fun()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+    function fun(){
+    //Username    
+    var unm = document.getElementById("usrnm");
+    var p1 = /(^@|^_|^$|^[0-9]|\s)/
+    if(unm.value==""){
+        alert("The username must not be blank");
+    }
+    else if(p1.test(unm.value)==true){
+        alert("The username cannot start with @,_,$ or digits and have space");
+    }
+
+    //Password
+    var pwd = document.getElementById("pwd").value;
+    var p2 = /[a-z]{1,}/
+    var p3 = /[A-Z]/
+    var p4 = /\W/
+    if(pwd==""){
+        alert("The password can't be blank");
+    }
+    if(p2.test(pwd)==false){
+        alert("Atleast one lowercase character is required.");
+    }
+    else if(p3.test(pwd)==false){
+        alert("Atleast one uppercase character is required.");
+    }
+    else if(p4.test(pwd)==false){
+        alert("Atleast one special character is required.");
+    }
+    else if(pwd.length<8 || pwd.length>16){
+        alert("The password should be 8 to 16 characters long");
+    }
+
+    //Confirm
+    var conpwd = document.getElementById("cpd").value;
+    if(pwd!=conpwd){
+        alert("Confirm Password not same as password");
+    }
+
+    //Mobile Number
+    var mnum = document.getElementById("mob").value;
+    // p5 = /^[0-9]${10}/ invalid 
+    p5 = /\d{10}/
+    if(p5.test(mnum)==false){
+        alert("Please enter a valid number");
+    }
+
+    //E-mail id
+    var eid = document.getElementById("email").value;
+    var p6 = /^\w+([\.\-_]?\w+)*@\w+\.\w+(\.?\w+)*$/;
+    // . has an inbuilt meaning any key on the keyboard so it has to be placed inside the escape character \ (backward slash)
+
+    if(p6.test(eid)==false){
+        alert("Please enter a valid email address");
+    }
+
+    //Web URL
+    var weburl = document.getElementById("url").value;
+    var p7 = /^www\.\w+\.\w+(\.?w+)*$/;
+
+    if(p7.test(weburl)==false){
+        alert("Please enter a valid web url");
+    }
+
+    //Special
+    var spal = document.getElementById("spl").value;
+    var p8 = /W/;
+
+    if(p8.test(spal)==false){
+        alert("No special characters allowed");
+    }
+}
+</script>
+</html>
